@@ -1,6 +1,6 @@
 using Godot;
 using System;
 
-public partial class main : Node3D
+public partial class Main : Node3D
 {
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://dfduq63i5fs8u"]
+[gd_scene load_steps=47 format=3 uid="uid://dfduq63i5fs8u"]
 
 [ext_resource type="Texture2D" uid="uid://cx04ixlvwty47" path="res://Assets/Sprites/Characters/Player/Running/Running_008.png" id="1_2oiuv"]
 [ext_resource type="Script" path="res://Scripts/Characters/Player/Player.cs" id="1_7cops"]
@@ -102,15 +102,23 @@ _data = {
 "Move": SubResource("Animation_3ot4k")
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0g8on"]
+radius = 0.491273
+height = 1.5
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "StateMachineNode")]
+collision_layer = 2
+floor_max_angle = 1.55334
+floor_snap_length = 0.25
 script = ExtResource("1_7cops")
 AnimPlayerNode = NodePath("AnimationPlayer")
 Sprite3DNode = NodePath("Sprite3D")
 StateMachineNode = NodePath("StateMachine")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+pixel_size = 0.0025
 texture_filter = 0
-texture = ExtResource("2_73gbq")
+texture = ExtResource("2_o3s1m")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite3D")
@@ -137,3 +145,7 @@ script = ExtResource("33_0q561")
 
 [node name="IdleState" type="Node" parent="StateMachine"]
 script = ExtResource("32_21xge")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0145903, -0.000112087, 0)
+shape = SubResource("CapsuleShape3D_0g8on")
