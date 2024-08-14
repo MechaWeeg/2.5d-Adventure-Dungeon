@@ -33,13 +33,13 @@
 [ext_resource type="Texture2D" uid="uid://ctrglcpidqpvt" path="res://Assets/Sprites/Characters/Player/Running/Running_010.png" id="29_d35dv"]
 [ext_resource type="Texture2D" uid="uid://cq3sslq2267uu" path="res://Assets/Sprites/Characters/Player/Running/Running_011.png" id="30_nny2p"]
 [ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerIdleState.cs" id="32_21xge"]
-[ext_resource type="Script" path="res://Scripts/Characters/StateMachine.cs" id="32_px8kp"]
 [ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerMoveState.cs" id="33_0q561"]
 [ext_resource type="Texture2D" uid="uid://cdv8wtk05ti43" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_000.png" id="33_708i2"]
 [ext_resource type="Texture2D" uid="uid://dkm2hhbwkby6c" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_001.png" id="34_q856p"]
 [ext_resource type="Texture2D" uid="uid://c6ooctpw6ov2t" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_002.png" id="35_ryj0d"]
 [ext_resource type="Texture2D" uid="uid://eoud0b8jwb37" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_003.png" id="36_4jhu0"]
 [ext_resource type="Texture2D" uid="uid://gfa0mil4a64e" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_004.png" id="37_g4bf7"]
+[ext_resource type="PackedScene" uid="uid://dowbygynv3f" path="res://Scenes/Characters/state_machine.tscn" id="38_6bl3q"]
 [ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerDashState.cs" id="41_foa71"]
 
 [sub_resource type="Animation" id="Animation_03ooq"]
@@ -126,8 +126,7 @@ libraries = {
 "": SubResource("AnimationLibrary_bbjjh")
 }
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("currentState", "states")]
-script = ExtResource("32_px8kp")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("currentState", "states") instance=ExtResource("38_6bl3q")]
 currentState = NodePath("IdleState")
 states = [NodePath("IdleState"), NodePath("MoveState"), NodePath("DashState")]
 
