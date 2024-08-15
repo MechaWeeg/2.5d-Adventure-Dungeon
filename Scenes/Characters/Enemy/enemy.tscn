@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=3 uid="uid://bt8xv8kl6cmk3"]
+[gd_scene load_steps=116 format=3 uid="uid://bt8xv8kl6cmk3"]
 
 [ext_resource type="Texture2D" uid="uid://i8w5l2ctdmgo" path="res://Assets/Sprites/Characters/Enemy Knight/TakeHit/0_Demons_of_Darkness_Hurt_011.png" id="1_32lqo"]
 [ext_resource type="Script" path="res://Scripts/Characters/Enemy/Enemy.cs" id="1_ho738"]
@@ -102,6 +102,10 @@
 [ext_resource type="Texture2D" uid="uid://5nca6olgbnqx" path="res://Assets/Sprites/Characters/Enemy Knight/TakeHit/0_Demons_of_Darkness_Hurt_010.png" id="81_j0iyv"]
 [ext_resource type="PackedScene" uid="uid://dowbygynv3f" path="res://Scenes/Characters/state_machine.tscn" id="100_iok65"]
 [ext_resource type="Script" path="res://Scripts/Characters/Enemy/EnemyIdleState.cs" id="101_fcn85"]
+[ext_resource type="Script" path="res://Scripts/Characters/Enemy/EnemyChaseState.cs" id="102_ca2ss"]
+[ext_resource type="Script" path="res://Scripts/Characters/Enemy/EnemyReturnState.cs" id="103_omux2"]
+[ext_resource type="Script" path="res://Scripts/Characters/Enemy/EnemyPatrolState.cs" id="104_snjrw"]
+[ext_resource type="Script" path="res://Scripts/Characters/Enemy/EnemyAttackState.cs" id="106_e3w50"]
 
 [sub_resource type="Animation" id="Animation_crif5"]
 resource_name = "Attack"
@@ -210,15 +214,26 @@ _data = {
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xwhfc"]
 height = 1.5
 
-[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "StateMachineNode")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_fn4an"]
+radius = 6.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gq8er"]
+radius = 1.4
+
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "StateMachineNode", "AgentNode", "ChaseAreaNode", "AttackAreaNode")]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_ho738")
 AnimPlayerNode = NodePath("AnimationPlayer")
 Sprite3DNode = NodePath("Sprite3D")
 StateMachineNode = NodePath("StateMachine")
+AgentNode = NodePath("NavigationAgent3D")
+ChaseAreaNode = NodePath("ChaseArea")
+AttackAreaNode = NodePath("AttackArea")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 pixel_size = 0.0025
-texture = ExtResource("29_1n37x")
+texture = ExtResource("68_wo201")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -230,7 +245,44 @@ shape = SubResource("CapsuleShape3D_xwhfc")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("currentState", "states") instance=ExtResource("100_iok65")]
 currentState = NodePath("IdleState")
-states = [NodePath("IdleState")]
+states = [NodePath("IdleState"), NodePath("ReturnState"), NodePath("PatrolState"), NodePath("ChaseState"), NodePath("AttackState")]
+
+[node name="ChaseState" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerNode")]
+script = ExtResource("102_ca2ss")
+timerNode = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="StateMachine/ChaseState"]
+wait_time = 0.5
+autostart = true
 
 [node name="IdleState" type="Node" parent="StateMachine"]
 script = ExtResource("101_fcn85")
+
+[node name="ReturnState" type="Node" parent="StateMachine"]
+script = ExtResource("103_omux2")
+
+[node name="PatrolState" type="Node" parent="StateMachine"]
+script = ExtResource("104_snjrw")
+
+[node name="Timer" type="Timer" parent="StateMachine/PatrolState"]
+one_shot = true
+
+[node name="AttackState" type="Node" parent="StateMachine"]
+script = ExtResource("106_e3w50")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="ChaseArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseArea"]
+shape = SubResource("SphereShape3D_fn4an")
+
+[node name="AttackArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea"]
+shape = SubResource("SphereShape3D_gq8er")
