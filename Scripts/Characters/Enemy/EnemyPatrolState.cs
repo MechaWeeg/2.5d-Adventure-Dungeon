@@ -7,9 +7,10 @@ public partial class EnemyPatrolState : EnemyState
     [Export(PropertyHint.Range, "0, 20, 0.1")] private float maxIdleTime = 4;
 
     private int pointIndex = 0;
+
     protected override void EnterState()
     {
-        characterNode.AnimPlayerNode.Play(GameConstants.ANIM_MOVE);   
+        characterNode.AnimPlayerNode.Play(GameConstants.ANIM_MOVE);
 
         pointIndex = 1;
 
@@ -24,7 +25,7 @@ public partial class EnemyPatrolState : EnemyState
 
     protected override void ExitState()
     {
-        characterNode.AgentNode.NavigationFinished -= HandleNavigationFinished;   
+        characterNode.AgentNode.NavigationFinished -= HandleNavigationFinished;
         idleTimerNode.Timeout -= HandleTimeout;
         characterNode.ChaseAreaNode.BodyEntered -= HandleChaseAreaBodyEntered;
     }
