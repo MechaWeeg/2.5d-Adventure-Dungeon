@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjvy2c1ehwgud"
-path.s3tc="res://.godot/imported/smoke-Fx3_9.png-511cbdfd6379e1f8830cbe0e5cfa831e.s3tc.ctex"
+path="res://.godot/imported/smoke-Fx3_9.png-511cbdfd6379e1f8830cbe0e5cfa831e.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Sprites/Characters/Enemy Knight/Death/smoke-Fx3_9.png"
-dest_files=["res://.godot/imported/smoke-Fx3_9.png-511cbdfd6379e1f8830cbe0e5cfa831e.s3tc.ctex"]
+dest_files=["res://.godot/imported/smoke-Fx3_9.png-511cbdfd6379e1f8830cbe0e5cfa831e.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

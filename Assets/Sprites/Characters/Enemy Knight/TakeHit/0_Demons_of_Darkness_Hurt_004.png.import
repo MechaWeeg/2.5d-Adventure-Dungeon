@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c6npqrv8i7ivx"
-path.s3tc="res://.godot/imported/0_Demons_of_Darkness_Hurt_004.png-c9e0541ffe7d5aef2c3a263968401738.s3tc.ctex"
+path="res://.godot/imported/0_Demons_of_Darkness_Hurt_004.png-c9e0541ffe7d5aef2c3a263968401738.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Sprites/Characters/Enemy Knight/TakeHit/0_Demons_of_Darkness_Hurt_004.png"
-dest_files=["res://.godot/imported/0_Demons_of_Darkness_Hurt_004.png-c9e0541ffe7d5aef2c3a263968401738.s3tc.ctex"]
+dest_files=["res://.godot/imported/0_Demons_of_Darkness_Hurt_004.png-c9e0541ffe7d5aef2c3a263968401738.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
