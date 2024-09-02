@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://yig0ub2epne"]
+[gd_scene load_steps=28 format=3 uid="uid://yig0ub2epne"]
 
 [ext_resource type="Script" path="res://Scripts/UI/UIController.cs" id="1_edwkk"]
 [ext_resource type="Texture2D" uid="uid://cus12hvqwdfoy" path="res://Assets/Sprites/UI/UI Element 1.png" id="1_vsbjt"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://c4as07db4s3f4" path="res://Assets/Sprites/UI/UI ElementUI 11.png" id="17_n4nex"]
 [ext_resource type="Texture2D" uid="uid://b8qj82o7btxnd" path="res://Assets/Sprites/UI/UI Element 5.png" id="18_hay1j"]
 [ext_resource type="Texture2D" uid="uid://db5gprnbgy8n4" path="res://Assets/Sprites/UI/UI Element 4.png" id="19_nosdx"]
+[ext_resource type="Texture2D" uid="uid://v0op0uo3snu6" path="res://Assets/Sprites/UI/UI ElementUI 13.png" id="20_iqv7s"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1nod5"]
 texture = ExtResource("3_qy0kb")
@@ -328,6 +329,77 @@ size_flags_vertical = 4
 texture = ExtResource("18_hay1j")
 
 [node name="Button" type="Button" parent="Pause/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_c002a")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxTexture_fwy1l")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fwy1l")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_fwy1l")
+theme_override_styles/focus = SubResource("StyleBoxTexture_fwy1l")
+text = "CONTINUE"
+
+[node name="Reward" type="PanelContainer" parent="." node_paths=PackedStringArray("ButtonNode", "TextureNode", "LabelNode")]
+visible = false
+custom_minimum_size = Vector2(520, 520)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -260.0
+offset_right = 260.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_8n3mq")
+script = ExtResource("2_16pmj")
+container = 5
+ButtonNode = NodePath("MarginContainer/VBoxContainer/VBoxContainer/Button")
+TextureNode = NodePath("MarginContainer/VBoxContainer/VBoxContainer/TextureRect")
+LabelNode = NodePath("MarginContainer/VBoxContainer/Label")
+
+[node name="MarginContainer" type="MarginContainer" parent="Reward"]
+layout_mode = 2
+theme_override_constants/margin_top = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Reward/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="Reward/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_c002a")
+theme_override_font_sizes/font_size = 48
+text = "REWARD"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Reward/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="TextureRect" type="TextureRect" parent="Reward/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("20_iqv7s")
+
+[node name="RewardText" type="Label" parent="Reward/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_c002a")
+theme_override_font_sizes/font_size = 22
+text = "REWARD"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Reward/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
