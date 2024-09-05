@@ -1,3 +1,5 @@
+using System;
+
 public class GameConstants
 
 {
@@ -7,6 +9,8 @@ public class GameConstants
     public const string ANIM_DASH = "Dash";
     public const string ANIM_ATTACK = "Attack";
     public const string ANIM_DEATH = "Death";
+    public const string ANIM_EXPAND = "Expand";
+    public const String ANIM_EXPLOSION = "Explosion";
 
 // Inputs
     public const string INPUT_MOVE_LEFT = "MoveLeft";

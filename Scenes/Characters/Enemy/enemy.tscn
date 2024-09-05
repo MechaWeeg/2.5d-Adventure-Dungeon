@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=3 uid="uid://bt8xv8kl6cmk3"]
+[gd_scene load_steps=123 format=3 uid="uid://bt8xv8kl6cmk3"]
 
 [ext_resource type="Texture2D" uid="uid://i8w5l2ctdmgo" path="res://Assets/Sprites/Characters/Enemy Knight/TakeHit/0_Demons_of_Darkness_Hurt_011.png" id="1_32lqo"]
 [ext_resource type="Script" path="res://Scripts/Characters/Enemy/Enemy.cs" id="1_ho738"]
@@ -108,6 +108,7 @@
 [ext_resource type="Script" path="res://Scripts/Characters/Enemy/EnemyPatrolState.cs" id="104_snjrw"]
 [ext_resource type="Script" path="res://Scripts/Characters/Enemy/EnemyAttackState.cs" id="106_e3w50"]
 [ext_resource type="Script" path="res://Scripts/Characters/Enemy/EnemyDeathState.cs" id="108_aa8ld"]
+[ext_resource type="Script" path="res://Scripts/Characters/AttackHitbox.cs" id="109_ruv4x"]
 
 [sub_resource type="Resource" id="Resource_hmotk"]
 script = ExtResource("2_vjk7d")
@@ -337,6 +338,7 @@ shape = SubResource("CapsuleShape3D_eobqv")
 [node name="Hitbox" type="Area3D" parent="."]
 collision_layer = 4
 collision_mask = 0
+script = ExtResource("109_ruv4x")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 shape = SubResource("BoxShape3D_67hit")
