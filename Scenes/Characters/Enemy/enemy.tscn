@@ -1,10 +1,11 @@
-[gd_scene load_steps=123 format=3 uid="uid://bt8xv8kl6cmk3"]
+[gd_scene load_steps=125 format=3 uid="uid://bt8xv8kl6cmk3"]
 
 [ext_resource type="Texture2D" uid="uid://i8w5l2ctdmgo" path="res://Assets/Sprites/Characters/Enemy Knight/TakeHit/0_Demons_of_Darkness_Hurt_011.png" id="1_32lqo"]
 [ext_resource type="Script" path="res://Scripts/Characters/Enemy/Enemy.cs" id="1_ho738"]
 [ext_resource type="Script" path="res://Scripts/Resources/StatResource.cs" id="2_vjk7d"]
 [ext_resource type="Texture2D" uid="uid://cvoa8n2yif20m" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_000.png" id="2_xyn8i"]
 [ext_resource type="Texture2D" uid="uid://dmtur5wj5b36b" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_001.png" id="3_2ey8b"]
+[ext_resource type="Shader" path="res://Shaders/character_hurt.gdshader" id="3_q1yac"]
 [ext_resource type="Texture2D" uid="uid://oubfxa3l8a0" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_002.png" id="4_qorol"]
 [ext_resource type="Texture2D" uid="uid://b4e8vf00ivs3r" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_003.png" id="5_sy16g"]
 [ext_resource type="Texture2D" uid="uid://dvik5hvb5k8e3" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_004.png" id="6_guaus"]
@@ -119,6 +120,14 @@ StatValue = 20.0
 script = ExtResource("2_vjk7d")
 StatType = 1
 StatValue = 4.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qur38"]
+resource_local_to_scene = true
+render_priority = 1
+shader = ExtResource("3_q1yac")
+shader_parameter/active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/tex = ExtResource("68_wo201")
 
 [sub_resource type="Animation" id="Animation_crif5"]
 resource_name = "Attack"
@@ -253,7 +262,7 @@ height = 1.5
 [sub_resource type="BoxShape3D" id="BoxShape3D_67hit"]
 size = Vector3(0.5, 0.5, 0.5)
 
-[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "StateMachineNode", "HurtboxNode", "HitboxNode", "HitboxShapeNode", "AgentNode", "ChaseAreaNode", "AttackAreaNode")]
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "StateMachineNode", "HurtboxNode", "HitboxNode", "HitboxShapeNode", "ShaderTimer", "AgentNode", "ChaseAreaNode", "AttackAreaNode")]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ho738")
@@ -264,11 +273,13 @@ StateMachineNode = NodePath("StateMachine")
 HurtboxNode = NodePath("Hurtbox")
 HitboxNode = NodePath("Hitbox")
 HitboxShapeNode = NodePath("Hitbox/CollisionShape3D")
+ShaderTimer = NodePath("ShaderTimer")
 AgentNode = NodePath("NavigationAgent3D")
 ChaseAreaNode = NodePath("ChaseArea")
 AttackAreaNode = NodePath("AttackArea")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+material_overlay = SubResource("ShaderMaterial_qur38")
 pixel_size = 0.0025
 texture = ExtResource("68_wo201")
 
@@ -343,3 +354,7 @@ script = ExtResource("109_ruv4x")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 shape = SubResource("BoxShape3D_67hit")
 disabled = true
+
+[node name="ShaderTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true

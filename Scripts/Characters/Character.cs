@@ -14,6 +14,7 @@ public abstract partial class Character : CharacterBody3D
     [Export] public Area3D HurtboxNode { get; private set; }
     [Export] public Area3D HitboxNode { get; private set; }
     [Export] public CollisionShape3D HitboxShapeNode { get; private set; }
+    [Export] public Timer ShaderTimer { get; private set; }
 
     [ExportGroup("AI Nodes")]
     [Export] public Path3D PathNode { get; private set; }
@@ -23,11 +24,23 @@ public abstract partial class Character : CharacterBody3D
 
 
     public Vector2 direction = new();
+    public ShaderMaterial shader;
 
     public override void _Ready()
     {
-        HurtboxNode.AreaEntered += HandleHurtboxAreaEntered;
+        shader = (ShaderMaterial)Sprite3DNode.MaterialOverlay;
 
+        HurtboxNode.AreaEntered += HandleHurtboxAreaEntered;
+        Sprite3DNode.TextureChanged += HandleTextureChanged;
+        ShaderTimer.Timeout += HandleShaderTimerTimeout;
+
+    }
+
+    private void HandleTextureChanged()
+    {
+        shader.SetShaderParameter(
+            "tex", Sprite3DNode.Texture
+        );
     }
 
     private void HandleHurtboxAreaEntered(Area3D area)
@@ -39,14 +52,17 @@ public abstract partial class Character : CharacterBody3D
 
         health.StatValue -= damage;
 
-        GD.Print(health.StatValue);
+        shader.SetShaderParameter(
+            "active", true
+        );
+
+        ShaderTimer.Start();
     }
 
     public StatResource GetStatResource(Stat stat) 
     {
         return stats.Where((element) => element.StatType == stat)
         .FirstOrDefault();
-
     }
 
     public void Flip()
@@ -62,5 +78,12 @@ public abstract partial class Character : CharacterBody3D
     public void ToggleHitbox(bool flag)
     {
         HitboxShapeNode.Disabled = flag;
+    }
+
+    private void HandleShaderTimerTimeout()
+    {
+        shader.SetShaderParameter(
+            "active", false
+        );
     }
 }
