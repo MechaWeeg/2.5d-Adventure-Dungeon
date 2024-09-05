@@ -12,6 +12,7 @@ public class GameConstants
     public const string ANIM_EXPAND = "Expand";
     public const String ANIM_EXPLOSION = "Explosion";
     public const String ANIM_LIGHTNING = "Lightning";
+    public const String ANIM_STUN = "Stun";
 
 // Inputs
     public const string INPUT_MOVE_LEFT = "MoveLeft";
