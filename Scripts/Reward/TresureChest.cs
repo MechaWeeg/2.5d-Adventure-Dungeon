@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class tresure_chest : StaticBody3D
+public partial class TresureChest : StaticBody3D
 {
     [Export] private Area3D areaNode;
     [Export] private Sprite3D spriteNode;

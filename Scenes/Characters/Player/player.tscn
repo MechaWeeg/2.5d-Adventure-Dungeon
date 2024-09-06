@@ -260,6 +260,7 @@ ShaderTimer = NodePath("ShaderTimer")
 [node name="Sprite3D" type="Sprite3D" parent="."]
 material_overlay = SubResource("ShaderMaterial_4yapq")
 pixel_size = 0.0025
+alpha_cut = 2
 texture_filter = 0
 texture = ExtResource("2_o3s1m")
 
@@ -275,7 +276,6 @@ states = [NodePath("IdleState"), NodePath("MoveState"), NodePath("DashState"), N
 
 [node name="DashState" type="Node" parent="StateMachine" node_paths=PackedStringArray("dashTimerNode")]
 script = ExtResource("41_foa71")
-speed = 20.0
 dashTimerNode = NodePath("Timer")
 bombScene = ExtResource("81_x7sy1")
 
