@@ -100,7 +100,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_idh5d")
 theme_override_styles/focus = SubResource("StyleBoxTexture_i0ps1")
 text = "Start "
 
-[node name="Stats" type="PanelContainer" parent="."]
+[node name="Stats" type="PanelContainer" parent="." node_paths=PackedStringArray("TextureNode", "LabelNode")]
 visible = false
 layout_mode = 0
 offset_left = 32.0
@@ -110,6 +110,8 @@ offset_bottom = 272.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_v6jum")
 script = ExtResource("2_16pmj")
 container = 4
+TextureNode = NodePath("MarginContainer/VBoxContainer/Health/HBoxContainer/TextureRect")
+LabelNode = NodePath("MarginContainer/VBoxContainer/Health/HBoxContainer/Label")
 
 [node name="MarginContainer" type="MarginContainer" parent="Stats"]
 layout_mode = 2
@@ -201,7 +203,7 @@ theme_override_font_sizes/font_size = 28
 text = "---"
 script = ExtResource("14_cy3d3")
 
-[node name="Defeat" type="PanelContainer" parent="."]
+[node name="Defeat" type="PanelContainer" parent="." node_paths=PackedStringArray("TextureNode", "LabelNode")]
 visible = false
 custom_minimum_size = Vector2(520, 520)
 layout_mode = 1
@@ -219,6 +221,8 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_8n3mq")
 script = ExtResource("2_16pmj")
 container = 3
+TextureNode = NodePath("MarginContainer/VBoxContainer/TextureRect")
+LabelNode = NodePath("MarginContainer/VBoxContainer/Label")
 
 [node name="MarginContainer" type="MarginContainer" parent="Defeat"]
 layout_mode = 2
@@ -243,7 +247,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("16_d3yu2")
 
-[node name="Victory" type="PanelContainer" parent="."]
+[node name="Victory" type="PanelContainer" parent="." node_paths=PackedStringArray("TextureNode", "LabelNode")]
 visible = false
 custom_minimum_size = Vector2(520, 520)
 layout_mode = 1
@@ -261,6 +265,8 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_8n3mq")
 script = ExtResource("2_16pmj")
 container = 2
+TextureNode = NodePath("MarginContainer/VBoxContainer/TextureRect")
+LabelNode = NodePath("MarginContainer/VBoxContainer/Label")
 
 [node name="MarginContainer" type="MarginContainer" parent="Victory"]
 layout_mode = 2
@@ -285,7 +291,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("17_n4nex")
 
-[node name="Pause" type="PanelContainer" parent="." node_paths=PackedStringArray("ButtonNode")]
+[node name="Pause" type="PanelContainer" parent="." node_paths=PackedStringArray("ButtonNode", "TextureNode", "LabelNode")]
 visible = false
 custom_minimum_size = Vector2(520, 520)
 layout_mode = 1
@@ -304,6 +310,8 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_8n3mq")
 script = ExtResource("2_16pmj")
 container = 1
 ButtonNode = NodePath("MarginContainer/VBoxContainer/Button")
+TextureNode = NodePath("MarginContainer/VBoxContainer/TextureRect")
+LabelNode = NodePath("MarginContainer/VBoxContainer/Label")
 
 [node name="MarginContainer" type="MarginContainer" parent="Pause"]
 layout_mode = 2
@@ -361,7 +369,7 @@ script = ExtResource("2_16pmj")
 container = 5
 ButtonNode = NodePath("MarginContainer/VBoxContainer/VBoxContainer/Button")
 TextureNode = NodePath("MarginContainer/VBoxContainer/VBoxContainer/TextureRect")
-LabelNode = NodePath("MarginContainer/VBoxContainer/Label")
+LabelNode = NodePath("MarginContainer/VBoxContainer/VBoxContainer/RewardText")
 
 [node name="MarginContainer" type="MarginContainer" parent="Reward"]
 layout_mode = 2

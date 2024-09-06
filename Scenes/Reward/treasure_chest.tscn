@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bvpl2ik63g64t"]
 
+[ext_resource type="Script" path="res://Scripts/Reward/TreasureChest.cs" id="1_7l2td"]
 [ext_resource type="Texture2D" uid="uid://c5p10ip1ait5j" path="res://Assets/Sprites/General/16x16.png" id="1_dwjct"]
-[ext_resource type="Script" path="res://Scripts/Reward/TresureChest.cs" id="1_r6xe6"]
 [ext_resource type="Texture2D" uid="uid://bm1aam4gapd5g" path="res://Assets/Sprites/UI/Keyboard Letters and Symbols.png" id="2_klr3k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s07a1"]
@@ -10,9 +10,9 @@ size = Vector3(0.8, 1, 0.25)
 [sub_resource type="SphereShape3D" id="SphereShape3D_667wk"]
 radius = 2.0
 
-[node name="TresureChest" type="StaticBody3D" node_paths=PackedStringArray("areaNode", "spriteNode")]
+[node name="TreasureChest" type="StaticBody3D" node_paths=PackedStringArray("areaNode", "spriteNode")]
 collision_mask = 2
-script = ExtResource("1_r6xe6")
+script = ExtResource("1_7l2td")
 areaNode = NodePath("Area3D")
 spriteNode = NodePath("InteractiveIcon")
 

@@ -274,12 +274,13 @@ libraries = {
 currentState = NodePath("IdleState")
 states = [NodePath("IdleState"), NodePath("MoveState"), NodePath("DashState"), NodePath("AttackState"), NodePath("DeathState")]
 
-[node name="DashState" type="Node" parent="StateMachine" node_paths=PackedStringArray("dashTimerNode")]
+[node name="DashState" type="Node" parent="StateMachine" node_paths=PackedStringArray("dashTimerNode", "cooldownTimer")]
 script = ExtResource("41_foa71")
-dashTimerNode = NodePath("Timer")
+dashTimerNode = NodePath("DurationTimer")
+cooldownTimer = NodePath("../DashCooldownTimer")
 bombScene = ExtResource("81_x7sy1")
 
-[node name="Timer" type="Timer" parent="StateMachine/DashState"]
+[node name="DurationTimer" type="Timer" parent="StateMachine/DashState"]
 wait_time = 0.4
 one_shot = true
 
@@ -300,6 +301,11 @@ one_shot = true
 
 [node name="DeathState" type="Node" parent="StateMachine"]
 script = ExtResource("83_b2woe")
+
+[node name="DashCooldownTimer" type="Timer" parent="StateMachine"]
+process_mode = 1
+wait_time = 3.0
+one_shot = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_0g8on")
